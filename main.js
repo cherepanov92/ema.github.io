@@ -5,6 +5,7 @@ const citiesList = [ "Екатеринбург", "Сочи", "Москва", "М
 
 const api = new Api();
 const root = document.querySelector('.root');
+let selectedDate = new Date().getDate()
 
 // Создаём и отслеживаем нажатие кнопок с названиями городов
 const btnGroup = root.querySelector('.btn-group')
@@ -24,34 +25,63 @@ function selectCity(event) {
     // todo: активировать анимацию загрузки
     api.getCityWeatherInfo(city.value) 
         .then((data) => {
-            renderGraph(data)
+            clear_data = {};
+            data['list'].forEach(function(item) {
+                const datetime = new Date(item['dt'] * 1000)
+                const itemDate = datetime.getDate()
+                const itemTime = datetime.getHours()
+        
+                if (typeof clear_data[itemDate] !== "undefined") {
+                    clear_data[itemDate][itemTime] = item['main']
+                } else {
+                    clear_data[itemDate] = {}
+                    clear_data[itemDate][itemTime] = item['main']
+                }
+            });
+            // todo:отрисовываем пагинацию
+
+            // отрисовываем график
+            renderGraph(clear_data)
         })
         .catch(error => console.error(`Ошибка загрузки: ${error}`))
 }
 
 function renderGraph(watherData) {
-    console.log('watherData', watherData)
-    // var ctxL = document.getElementById("lineChart").getContext('2d');
-    // var myLineChart = new Chart(ctxL, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ["January", "February", "March", "April", "May", "June", "July"],
-    //         datasets: [
-    //             {label: "Погода ",
-    //             data: [65, 59, 80, 81, 56, 55, 40],
-    //             backgroundColor: ['rgba(105, 0, 132, .2)',],
-    //             borderColor: ['rgba(200, 99, 132, .7)',],
-    //             borderWidth: 2},
-    //             {label: "My Second dataset",
-    //             data: [28, 48, 40, 19, 86, 27, 90],
-    //             backgroundColor: ['rgba(0, 137, 132, .2)',],
-    //             borderColor: ['rgba(0, 10, 130, .7)',],
-    //             borderWidth: 2}
-    //         ]
-    //     },
-    //     options: {
-    //         responsive: true
-    //     }
-    // });
+    dayData = watherData[selectedDate]
+
+    // берём только необходимые для графика данные
+    const dayLabels = []
+    const dayTemp = []
+    const dayHumidity = []
+
+    Object.keys(dayData).forEach(function(item) {
+        dayLabels.push(item)
+        dayTemp.push(dayData[item]["temp"])
+        dayHumidity.push(dayData[item]["humidity"])
+    });
+
+    // Отрисовываем график
+    var ctxL = document.getElementById("lineChart").getContext('2d');
+    var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {
+            labels: dayLabels,
+            datasets: [
+                {label: "Температура ",
+                data: dayTemp,
+                backgroundColor: ['rgba(105, 0, 132, .2)',],
+                borderColor: ['rgba(200, 99, 132, .7)',],
+                borderWidth: 2},
+                {label: "Влажность",
+                data: dayHumidity,
+                backgroundColor: ['rgba(0, 137, 132, .2)',],
+                borderColor: ['rgba(0, 10, 130, .7)',],
+                borderWidth: 2}
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
 }
 console.log('check')
