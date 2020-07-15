@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Тестовое от Черепанова</title>
+    <meta name="description" content="тестовое задание для ЭМА">
+    <meta name="author" content="cherepanov">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="mdb/css/bootstrap.min.css">
+    <link rel="stylesheet" href="mdb/css/mdb.min.css">
+    <link rel="stylesheet" href="mdb/css/style.css">
+  </head>
+  <body>
+    <!-- Задача -->
+    <!-- 
+      Подготовить демонстрационное приложение с web интерфейсом пользователя, которое отображает данные в табличной форме и виде графика.
+      В качестве исходных данных взять прогноз погоды с сайта https://openweathermap.org/.
+
+      Тестовое задание нацелено на определение ваших знаний и навыков в части:
+      - JS, CSS, HTML и других технологий построения web приложений с интерфейсом пользователя,
+      - умение работать с WEB API и JSON,
+      - умение самостоятельно выполнять задачи и изучать техническую документацию.
+      - умение делать лаконичный и удобный в использовании интерфейс пользователя.
+    -->
+
+    <!-- Выбор города -->
+    <div class="btn-toolbar" role="toolbar" aria-label="Data button groups">
+      <div class="btn-group mr-2" role="group" aria-label="btn group">
+        <button type="button" class="btn btn-secondary">Екатеринбург</button>
+        <button type="button" class="btn btn-secondary">Сочи</button>
+        <button type="button" class="btn btn-secondary">Москва</button>
+        <button type="button" class="btn btn-secondary">Магадан</button>
+        <button type="button" class="btn btn-secondary">Крым</button>
+        <button type="button" class="btn btn-secondary active">Новосибирск</button>
+      </div>
+    </div>
+    <!-- график -->
+    <canvas id="lineChart"></canvas>
+    <!-- таблица -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Температура</th>
+          <th scope="col">Влажность</th>
+          <th scope="col">Облачность</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">25.10.1992</th>
+          <td>36.6</td>
+          <td>40%</td>
+          <td>Высокая</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script type="text/javascript" src="mdb/js/jquery.min.js"></script>
+    <script type="text/javascript" src="mdb/js/popper.min.js"></script>
+    <script type="text/javascript" src="mdb/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="mdb/js/mdb.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
