@@ -27,44 +27,44 @@
       - умение делать лаконичный и удобный в использовании интерфейс пользователя.
     -->
 
-    <!-- Выбор города -->
-    <div class="btn-toolbar" role="toolbar" aria-label="Data button groups">
-      <div class="btn-group mr-2" role="group" aria-label="btn group">
-        <button type="button" class="btn btn-secondary">Екатеринбург</button>
-        <button type="button" class="btn btn-secondary">Сочи</button>
-        <button type="button" class="btn btn-secondary">Москва</button>
-        <button type="button" class="btn btn-secondary">Магадан</button>
-        <button type="button" class="btn btn-secondary">Крым</button>
-        <button type="button" class="btn btn-secondary active">Новосибирск</button>
+    <div class="root">
+      <!-- Выбор города -->
+      <div class="btn-toolbar" role="toolbar" aria-label="Data button groups">
+        <div class="btn-group mr-2" role="group" aria-label="btn group">
+          <!-- здесь мы генерируем кнопки  -->
+        </div>
       </div>
-    </div>
-    <!-- график -->
-    <canvas id="lineChart"></canvas>
-    <!-- таблица -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Дата</th>
-          <th scope="col">Температура</th>
-          <th scope="col">Влажность</th>
-          <th scope="col">Облачность</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">25.10.1992</th>
-          <td>36.6</td>
-          <td>40%</td>
-          <td>Высокая</td>
-        </tr>
-      </tbody>
-    </table>
 
-    <script type="text/javascript" src="mdb/js/jquery.min.js"></script>
-    <script type="text/javascript" src="mdb/js/popper.min.js"></script>
-    <script type="text/javascript" src="mdb/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="mdb/js/mdb.min.js"></script>
+      <!-- график -->
+      <canvas id="lineChart"></canvas>
+
+      <!-- таблица -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Дата</th>
+            <th scope="col">Температура</th>
+            <th scope="col">Влажность</th>
+            <th scope="col">Облачность</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">25.10.1992</th>
+            <td>36.6</td>
+            <td>40%</td>
+            <td>Высокая</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script type="text/javascript" src="mdb/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="mdb/js/lib/popper.min.js"></script>
+    <script type="text/javascript" src="mdb/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="mdb/js/lib/mdb.min.js"></script>
+    <script type="text/javascript" src="mdb/js/api.js"></script>
+    <script type="text/javascript" src="mdb/js/button.js"></script>
     <script type="text/javascript" src="main.js"></script>
-    <script src="main.js"></script>
   </body>
 </html>
