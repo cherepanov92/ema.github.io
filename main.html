@@ -27,19 +27,26 @@
       - умение делать лаконичный и удобный в использовании интерфейс пользователя.
     -->
 
-    <div class="root">
+    <div class="root container-fluid">
+
       <!-- Выбор города -->
-      <div class="btn-toolbar" role="toolbar" aria-label="Data button groups">
-        <div class="btn-group mr-2" role="group" aria-label="btn group">
+      <div class="btn-toolbar justify-content-md-center" role="toolbar" aria-label="Data button groups">
+        <!-- <div class="btn-group btn-group-sm" role="group" aria-label="btn group"> -->
+          <!-- <button class="btn btn-primary" type="submit">Button</button>
+          <button class="btn btn-primary" type="submit">Button</button>
+          <button class="btn btn-primary" type="submit">Button</button>
+          <button class="btn btn-primary" type="submit">Button</button>
+          <button class="btn btn-primary" type="submit">Button</button> -->
           <!-- здесь мы генерируем кнопки  -->
-        </div>
+        <!-- </div> -->
       </div>
 
       <!-- график -->
-      <canvas id="lineChart"></canvas>
+      <canvas class="container-md container-fluid" id="lineChart"></canvas>
 
       <!-- таблица -->
-      <div class="table-container"></div>
+      <!-- <div class="table-container container-md container-fluid justify-content-md-center"></div> -->
+      <div class="table-responsive text-nowrap container-md justify-content-md-center" id="watherTable"></div>
     </div>
 
     <script type="text/javascript" src="mdb/js/lib/jquery.min.js"></script>

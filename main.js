@@ -3,17 +3,14 @@ const citiesList = [ "Екатеринбург", "Сочи", "Москва", "М
 
 const api = new Api();
 const root = document.querySelector('.root');
-const tableContainer = root.querySelector('.table-container');
+const tableContainer = root.querySelector('#watherTable');
 let selectedDate = new Date().getDate();
 
 // Создаём и отслеживаем нажатие кнопок с названиями городов
-const btnGroup = root.querySelector('.btn-group')
+const btnGroup = root.querySelector('.btn-toolbar');
 const citiesBTNGroup = new cityBtnGroup(btnGroup);
-// Генерируем кнопки из citiesList
-citiesList.forEach(function(item) {
-    const newCityBtn = new CityBTN(item);
-    citiesBTNGroup.btnRender(newCityBtn.create());
-});
+citiesBTNGroup.generation(citiesList);
+
 // Навешиваем слушателя кнопки
 btnGroup.addEventListener('click', selectCity);
 
@@ -28,8 +25,7 @@ function selectCity(event) {
             data['list'].forEach(function(item) {
                 const datetime = new Date(item['dt'] * 1000);
                 const itemDate = datetime.getDate();
-                const itemTime = datetime.getHours();
-                console.log(datetime, itemDate, itemTime)
+                const itemTime = `${datetime.getHours()}:00`;
         
                 if (typeof clear_data[itemDate] !== "undefined") {
                     clear_data[itemDate][itemTime] = item['main'];
@@ -55,7 +51,7 @@ function renderGraph(watherData) {
     const dayLabels = [];
     const dayTemp = [];
     const dayHumidity = [];
-;
+
     Object.keys(dayData).forEach(function(item) {
         dayLabels.push(item);
         dayTemp.push(dayData[item]["temp"]);
@@ -92,7 +88,6 @@ function renderWatherTable(watherData) {
   watherTable = new WatherTable(tableContainer);
   watherTable.generation(dayData);
   watherTable.render();
-
 }
 
 console.log('check');
