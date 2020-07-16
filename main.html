@@ -10,9 +10,10 @@
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="mdb/css/bootstrap.min.css">
-    <link rel="stylesheet" href="mdb/css/mdb.min.css">
-    <link rel="stylesheet" href="mdb/css/style.css">
+    <link rel="stylesheet" href="src/mdb/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/mdb/css/mdb.min.css">
+    <link rel="stylesheet" href="src/mdb/css/style.css">
+    <link rel="stylesheet" href="src/css/main.css">
   </head>
   <body>
     <!-- Задача -->
@@ -27,10 +28,17 @@
       - умение делать лаконичный и удобный в использовании интерфейс пользователя.
     -->
 
-    <div class="root container-fluid">
+    <div class="root container-fluid justify-content-md-center">
 
       <!-- Выбор города -->
       <div class="btn-toolbar justify-content-md-center" id="citiesBTN" role="toolbar" aria-label="Data button groups"></div>
+
+      <!-- прелоадер -->
+      <div class="d-flex justify-content-center" id="preloader">
+        <div class="spinner-border text-primary"  role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
 
       <!-- график -->
       <div class="container-md container-fluid" id="graphContainer"></div>
@@ -42,14 +50,14 @@
       <div class="table-responsive text-nowrap container-md justify-content-md-center" id="watherTable"></div>
     </div>
 
-    <script type="text/javascript" src="mdb/js/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="mdb/js/lib/popper.min.js"></script>
-    <script type="text/javascript" src="mdb/js/lib/bootstrap.min.js"></script>
-    <script type="text/javascript" src="mdb/js/lib/mdb.min.js"></script>
-    <script type="text/javascript" src="mdb/js/api.js"></script>
-    <script type="text/javascript" src="mdb/js/button.js"></script>
-    <script type="text/javascript" src="mdb/js/wather-table.js"></script>
-    <script type="text/javascript" src="mdb/js/graph.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/popper.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/mdb.min.js"></script>
+    <script type="text/javascript" src="src/js/api.js"></script>
+    <script type="text/javascript" src="src/js/button.js"></script>
+    <script type="text/javascript" src="src/js/wather-table.js"></script>
+    <script type="text/javascript" src="src/js/graph.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
