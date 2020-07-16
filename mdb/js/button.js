@@ -1,31 +1,45 @@
 'use strict';
-class cityBtnGroup {
+class BtnGroup {
   constructor(btnContainer) {
     this.btnContainer = btnContainer;
+    this.removeOldData();
+  };
+
+  removeOldData() {
+    console.log(this.btnContainer.firstChild);
+    while (this.btnContainer.firstChild) {
+      this.btnContainer.removeChild(this.btnContainer.firstChild);
+    }
   }
   
-  generation(data){
-    const container = this.btnContainer
+  generation(data, btnType){
+    const type = btnType;
+    const container = this.btnContainer;
     data.forEach(function(item) {
-      console.log(item);
-      const newCityBtn = new CityBTN(item);
-      const newBtn = newCityBtn.create();
+      const newBtnObj = new BTN(item, type);
+      const newBtn = newBtnObj.create();
       container.appendChild(newBtn);
     })
   }
 }
 
-class CityBTN {
-  constructor(value) {
+class BTN {
+  constructor(value, type, text) {
     this.value = value;
+    this.text = text ? text : value;
+    this.btnType = {"cityBtn":["btn","btn-primary", "btn-ln"],
+                    "dateBtn":["btn","btn-primary", "btn-sm"]}
+    this.btnStyleClasses = Object.keys(this.btnType).includes(type) ? this.btnType[type] : [];
   }
 
   create() {
-    this.btn = document.createElement("button");
-    this.btn.value = this.value;
-    this.btn.textContent = this.value;
-    this.btn.type = "button";
-    this.btn.classList.add("btn","btn-primary", "btn-ln");
-    return this.btn;
+    const btn = document.createElement("button");
+    btn.value = this.value;
+    btn.textContent = this.text;
+    btn.type = "button";
+    this.btnStyleClasses.forEach(function(item) {
+      btn.classList.add(item);
+    });
+    return btn;
   }
 }
