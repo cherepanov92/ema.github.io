@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Тестовое от Черепанова</title>
+    <meta name="description" content="тестовое задание для ЭМА">
+    <meta name="author" content="cherepanov">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="src/mdb/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/mdb/css/mdb.min.css">
+    <link rel="stylesheet" href="src/mdb/css/style.css">
+    <link rel="stylesheet" href="src/css/main.css">
+  </head>
+  <body>
+    <main class="root container-fluid justify-content-center">
+
+      <!-- Выбор города -->
+      <div class="btn-toolbar justify-content-center" id="citiesBTN" role="toolbar" aria-label="Data button groups"></div>
+
+      <!-- прелоадер -->
+      <div class="d-flex justify-content-center" id="preloader">
+        <div class="spinner-border text-primary"  role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <!-- график -->
+      <div class="container-md container-fluid" id="graphContainer"></div>
+
+      <!-- Пагинация даты -->
+      <div class="btn-toolbar justify-content-center" id="dateBTN" role="toolbar" aria-label="Data button groups"></div>
+
+      <!-- таблица -->
+      <div class="table-responsive text-nowrap container-md justify-content-center" id="watherTable"></div>
+    </main>
+
+    <script type="text/javascript" src="src/mdb/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/popper.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="src/mdb/js/lib/mdb.min.js"></script>
+    <script type="text/javascript" src="src/js/api.js"></script>
+    <script type="text/javascript" src="src/js/button.js"></script>
+    <script type="text/javascript" src="src/js/wather-table.js"></script>
+    <script type="text/javascript" src="src/js/graph.js"></script>
+    <script type="text/javascript" src="src/js/main.js"></script>
+  </body>
+</html>
