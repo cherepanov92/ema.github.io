@@ -6,7 +6,6 @@ class BtnGroup {
   };
 
   removeOldData() {
-    console.log(this.btnContainer.firstChild);
     while (this.btnContainer.firstChild) {
       this.btnContainer.removeChild(this.btnContainer.firstChild);
     }

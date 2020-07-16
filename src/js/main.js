@@ -1,19 +1,20 @@
 
-const citiesList = [ "Екатеринбург", "Сочи", "Москва", "Магадан", "Крым", "Новосибирск"];
-
-const api = new Api();
 const root = document.querySelector('.root');
 const tableContainer = root.querySelector('#watherTable');
 const citiesBtnContainer = root.querySelector('#citiesBTN');
 const dateBtnContainer = root.querySelector('#dateBTN');
 const preloaderContainer = root.querySelector('#preloader')
 
+const api = new Api();
+const citiesBtnGroup = new BtnGroup(citiesBtnContainer);
+
+const citiesList = [ "Екатеринбург", "Сочи", "Москва", "Магадан", "Крым", "Новосибирск"];
+
 let selectedDay = new Date();
 let selectedDate = `${selectedDay.getDate()}.${selectedDay.getMonth()}`;
 let clearApiData = {};
 
 // Создаём и отслеживаем нажатие кнопок с названиями городов
-const citiesBtnGroup = new BtnGroup(citiesBtnContainer);
 citiesBtnGroup.generation(citiesList, btnType="cityBtn");
 
 // Навешиваем слушателя кнопок гродов
@@ -21,7 +22,7 @@ citiesBtnContainer.addEventListener('click', selectCity);
 
 function selectCity(event) {
     let city = event.target;
-    preloaderContainer.style.visibility = "visible" 
+    preloaderContainer.style.visibility = "visible";
     changeActiveBtn(citiesBtnContainer, city);
     api.getCityWeatherInfo(city.value) 
         .then((data) => {
@@ -37,7 +38,7 @@ function selectCity(event) {
                     clearApiData[itemDate][itemTime] = item['main'];
                 }
             });
-            preloaderContainer.style.visibility = "hidden"
+            preloaderContainer.style.visibility = "hidden";
             renderPagination(clearApiData);
             renderDateData(selectedDate);
         })
@@ -91,5 +92,3 @@ function renderWatherTable(dayData) {
   watherTable.generation(dayData);
   watherTable.render();
 }
-
-console.log('check');

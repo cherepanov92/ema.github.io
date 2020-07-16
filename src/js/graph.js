@@ -1,3 +1,4 @@
+
 'use strict';
 class Graph {
   constructor(tableContainer) {
@@ -9,14 +10,12 @@ class Graph {
   }
   
   removeOldData() {
-    console.log(this.container.firstChild);
     while (this.container.firstChild) {
       this.container.removeChild(this.container.firstChild);
     }
   }
   
   generation(dayData) {
-    console.log(dayData);
     let dayLabels = []
     let dayTemp = []
     let dayHumidity = []

@@ -16,22 +16,10 @@
     <link rel="stylesheet" href="src/css/main.css">
   </head>
   <body>
-    <!-- Задача -->
-    <!-- 
-      Подготовить демонстрационное приложение с web интерфейсом пользователя, которое отображает данные в табличной форме и виде графика.
-      В качестве исходных данных взять прогноз погоды с сайта https://openweathermap.org/.
-
-      Тестовое задание нацелено на определение ваших знаний и навыков в части:
-      - JS, CSS, HTML и других технологий построения web приложений с интерфейсом пользователя,
-      - умение работать с WEB API и JSON,
-      - умение самостоятельно выполнять задачи и изучать техническую документацию.
-      - умение делать лаконичный и удобный в использовании интерфейс пользователя.
-    -->
-
-    <div class="root container-fluid justify-content-md-center">
+    <main class="root container-fluid justify-content-center">
 
       <!-- Выбор города -->
-      <div class="btn-toolbar justify-content-md-center" id="citiesBTN" role="toolbar" aria-label="Data button groups"></div>
+      <div class="btn-toolbar justify-content-center" id="citiesBTN" role="toolbar" aria-label="Data button groups"></div>
 
       <!-- прелоадер -->
       <div class="d-flex justify-content-center" id="preloader">
@@ -44,11 +32,11 @@
       <div class="container-md container-fluid" id="graphContainer"></div>
 
       <!-- Пагинация даты -->
-      <div class="btn-toolbar justify-content-md-center" id="dateBTN" role="toolbar" aria-label="Data button groups"></div>
+      <div class="btn-toolbar justify-content-center" id="dateBTN" role="toolbar" aria-label="Data button groups"></div>
 
       <!-- таблица -->
-      <div class="table-responsive text-nowrap container-md justify-content-md-center" id="watherTable"></div>
-    </div>
+      <div class="table-responsive text-nowrap container-md justify-content-center" id="watherTable"></div>
+    </main>
 
     <script type="text/javascript" src="src/mdb/js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="src/mdb/js/lib/popper.min.js"></script>
@@ -58,6 +46,6 @@
     <script type="text/javascript" src="src/js/button.js"></script>
     <script type="text/javascript" src="src/js/wather-table.js"></script>
     <script type="text/javascript" src="src/js/graph.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="src/js/main.js"></script>
   </body>
 </html>

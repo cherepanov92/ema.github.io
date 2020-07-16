@@ -15,7 +15,6 @@ class WatherTable {
   };
 
   removeOldData() {
-    console.log(this.tableContainer.firstChild);
     while (this.tableContainer.firstChild) {
       this.tableContainer.removeChild(this.tableContainer.firstChild);
     }
