@@ -4,15 +4,17 @@ const citiesList = [ "Екатеринбург", "Сочи", "Москва", "М
 const api = new Api();
 const root = document.querySelector('.root');
 const tableContainer = root.querySelector('#watherTable');
-let selectedDate = new Date().getDate();
+let selectedDay = new Date();
+let selectedDate = `${selectedDay.getDate()}.${selectedDay.getMonth()}`;
+let clearApiData = {};
 
 // Создаём и отслеживаем нажатие кнопок с названиями городов
-const btnGroup = root.querySelector('.btn-toolbar');
-const citiesBTNGroup = new cityBtnGroup(btnGroup);
-citiesBTNGroup.generation(citiesList);
+const citiesBtnContainer = root.querySelector('#citiesBTN');
+const citiesBtnGroup = new BtnGroup(citiesBtnContainer);
+citiesBtnGroup.generation(citiesList, btnType="cityBtn");
 
 // Навешиваем слушателя кнопки
-btnGroup.addEventListener('click', selectCity);
+citiesBtnContainer.addEventListener('click', selectCity);
 
 function selectCity(event) {
     let city = event.target;
@@ -21,32 +23,51 @@ function selectCity(event) {
     // todo: активировать анимацию загрузки
     api.getCityWeatherInfo(city.value) 
         .then((data) => {
-            clear_data = {};
             data['list'].forEach(function(item) {
                 const datetime = new Date(item['dt'] * 1000);
-                const itemDate = datetime.getDate();
+                const itemDate = `${datetime.getDate()}.${datetime.getMonth()}`;
                 const itemTime = `${datetime.getHours()}:00`;
-        
-                if (typeof clear_data[itemDate] !== "undefined") {
-                    clear_data[itemDate][itemTime] = item['main'];
+
+                if (typeof clearApiData[itemDate] !== "undefined") {
+                    clearApiData[itemDate][itemTime] = item['main'];
                 } else {
-                    clear_data[itemDate] = {};
-                    clear_data[itemDate][itemTime] = item['main'];
+                    clearApiData[itemDate] = {};
+                    clearApiData[itemDate][itemTime] = item['main'];
                 }
             });
-            // todo:отрисовываем пагинацию
-
-            // отрисовываем график
-            renderGraph(clear_data);
-            // отрисовываем таблицу
-            renderWatherTable(clear_data);
+            renderPagination(clearApiData);
+            renderDateData(selectedDate);
         })
         .catch(error => console.error(`Ошибка загрузки: ${error}`))
+
 }
 
-function renderGraph(watherData) {
-    dayData = watherData[selectedDate];
+function selectDate(event) {
+  event.target.classList.add('active');
+  renderDateData(event.target.value);
+}
 
+function renderDateData(date) {
+  let dayData = clearApiData[date];
+
+  // отрисовываем график
+  renderGraph(dayData);
+  // отрисовываем таблицу
+  renderWatherTable(dayData);
+}
+
+function renderPagination(clearData) {
+  // Создаём и отслеживаем нажатие кнопок с датами
+  const dateBtnContainer = root.querySelector('#dateBTN');
+  const dateBtnGroup = new BtnGroup(dateBtnContainer);
+  const dateList = Object.keys(clearData);
+  dateBtnGroup.generation(dateList, btnType="dateBtn");
+
+  // Навешиваем слушателя кнопки
+  dateBtnContainer.addEventListener('click', selectDate);
+}
+
+function renderGraph(dayData) {
     // берём только необходимые для графика данные
     const dayLabels = [];
     const dayTemp = [];
@@ -83,8 +104,7 @@ function renderGraph(watherData) {
     });
 }
 
-function renderWatherTable(watherData) {
-  dayData = watherData[selectedDate];
+function renderWatherTable(dayData) {
   watherTable = new WatherTable(tableContainer);
   watherTable.generation(dayData);
   watherTable.render();
