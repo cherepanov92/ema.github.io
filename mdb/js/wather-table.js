@@ -11,7 +11,15 @@ class WatherTable {
                               <th scope="col">Влажность</th>
                             </tr>
                           </thead>`;
+    this.removeOldData();
   };
+
+  removeOldData() {
+    console.log(this.tableContainer.firstChild);
+    while (this.tableContainer.firstChild) {
+      this.tableContainer.removeChild(this.tableContainer.firstChild);
+    }
+  }
 
   generation(data) {
     this.table = document.createElement("table");
