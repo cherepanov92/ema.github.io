@@ -1,11 +1,10 @@
 
-const apiKey = "21b44faf29243a93f1e83d29526352cc"
-const apiURL = "http://api.openweathermap.org/data/2.5/forecast?q=Khabarovsk,ru&mode=json&units=metric&appid="
-const citiesList = [ "Екатеринбург", "Сочи", "Москва", "Магадан", "Крым", "Новосибирск"]
+const citiesList = [ "Екатеринбург", "Сочи", "Москва", "Магадан", "Крым", "Новосибирск"];
 
 const api = new Api();
 const root = document.querySelector('.root');
-let selectedDate = new Date().getDate()
+const tableContainer = root.querySelector('.table-container');
+let selectedDate = new Date().getDate();
 
 // Создаём и отслеживаем нажатие кнопок с названиями городов
 const btnGroup = root.querySelector('.btn-group')
@@ -27,37 +26,40 @@ function selectCity(event) {
         .then((data) => {
             clear_data = {};
             data['list'].forEach(function(item) {
-                const datetime = new Date(item['dt'] * 1000)
-                const itemDate = datetime.getDate()
-                const itemTime = datetime.getHours()
+                const datetime = new Date(item['dt'] * 1000);
+                const itemDate = datetime.getDate();
+                const itemTime = datetime.getHours();
+                console.log(datetime, itemDate, itemTime)
         
                 if (typeof clear_data[itemDate] !== "undefined") {
-                    clear_data[itemDate][itemTime] = item['main']
+                    clear_data[itemDate][itemTime] = item['main'];
                 } else {
-                    clear_data[itemDate] = {}
-                    clear_data[itemDate][itemTime] = item['main']
+                    clear_data[itemDate] = {};
+                    clear_data[itemDate][itemTime] = item['main'];
                 }
             });
             // todo:отрисовываем пагинацию
 
             // отрисовываем график
-            renderGraph(clear_data)
+            renderGraph(clear_data);
+            // отрисовываем таблицу
+            renderWatherTable(clear_data);
         })
         .catch(error => console.error(`Ошибка загрузки: ${error}`))
 }
 
 function renderGraph(watherData) {
-    dayData = watherData[selectedDate]
+    dayData = watherData[selectedDate];
 
     // берём только необходимые для графика данные
-    const dayLabels = []
-    const dayTemp = []
-    const dayHumidity = []
-
+    const dayLabels = [];
+    const dayTemp = [];
+    const dayHumidity = [];
+;
     Object.keys(dayData).forEach(function(item) {
-        dayLabels.push(item)
-        dayTemp.push(dayData[item]["temp"])
-        dayHumidity.push(dayData[item]["humidity"])
+        dayLabels.push(item);
+        dayTemp.push(dayData[item]["temp"]);
+        dayHumidity.push(dayData[item]["humidity"]);
     });
 
     // Отрисовываем график
@@ -84,4 +86,13 @@ function renderGraph(watherData) {
         }
     });
 }
-console.log('check')
+
+function renderWatherTable(watherData) {
+  dayData = watherData[selectedDate];
+  watherTable = new WatherTable(tableContainer);
+  watherTable.generation(dayData);
+  watherTable.render();
+
+}
+
+console.log('check');
