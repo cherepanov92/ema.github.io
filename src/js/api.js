@@ -14,7 +14,7 @@ class Api {
   }
 
   getCityWeatherInfo(city) {
-    let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},ru&mode=json&units=metric&appid=${this.token}`
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},ru&mode=json&units=metric&appid=${this.token}`
     return this._sendRequest(url, this.baseRequest);
   }
 }
