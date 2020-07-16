@@ -10,7 +10,7 @@ class BtnGroup {
     while (this.btnContainer.firstChild) {
       this.btnContainer.removeChild(this.btnContainer.firstChild);
     }
-  }
+  };
   
   generation(data, btnType){
     const type = btnType;
@@ -21,7 +21,7 @@ class BtnGroup {
       container.appendChild(newBtn);
     })
   }
-}
+};
 
 class BTN {
   constructor(value, type, text) {
@@ -30,7 +30,7 @@ class BTN {
     this.btnType = {"cityBtn":["btn","btn-primary", "btn-ln"],
                     "dateBtn":["btn","btn-primary", "btn-sm"]}
     this.btnStyleClasses = Object.keys(this.btnType).includes(type) ? this.btnType[type] : [];
-  }
+  };
 
   create() {
     const btn = document.createElement("button");
@@ -41,5 +41,5 @@ class BTN {
       btn.classList.add(item);
     });
     return btn;
-  }
+  };
 }

@@ -1,7 +1,6 @@
 'use strict';
 class Graph {
   constructor(tableContainer) {
-    // берём только необходимые для графика данные
     this.dayLabels = [];
     this.dayTemp = [];
     this.dayHumidity = [];
@@ -15,13 +14,14 @@ class Graph {
       this.container.removeChild(this.container.firstChild);
     }
   }
-
+  
   generation(dayData) {
     console.log(dayData);
     let dayLabels = []
     let dayTemp = []
     let dayHumidity = []
-
+    
+    // берём только необходимые для графика данные
     Object.keys(dayData).forEach(function(item , current) {
       dayLabels.push(item);
       dayTemp.push(dayData[item]["temp"]);
@@ -32,7 +32,6 @@ class Graph {
     this.dayTemp = dayTemp;
     this.dayHumidity = dayHumidity;
   }
-
 
   // Отрисовываем график
   render() {
