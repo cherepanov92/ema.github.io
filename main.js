@@ -49,7 +49,7 @@ function selectDate(event) {
 
 function renderDateData(date) {
   let dayData = clearApiData[date];
-
+  
   // отрисовываем график
   renderGraph(dayData);
   // отрисовываем таблицу
@@ -62,46 +62,15 @@ function renderPagination(clearData) {
   const dateBtnGroup = new BtnGroup(dateBtnContainer);
   const dateList = Object.keys(clearData);
   dateBtnGroup.generation(dateList, btnType="dateBtn");
-
+  
   // Навешиваем слушателя кнопки
   dateBtnContainer.addEventListener('click', selectDate);
 }
 
 function renderGraph(dayData) {
-    // берём только необходимые для графика данные
-    const dayLabels = [];
-    const dayTemp = [];
-    const dayHumidity = [];
-
-    Object.keys(dayData).forEach(function(item) {
-        dayLabels.push(item);
-        dayTemp.push(dayData[item]["temp"]);
-        dayHumidity.push(dayData[item]["humidity"]);
-    });
-
-    // Отрисовываем график
-    var ctxL = document.getElementById("lineChart").getContext('2d');
-    var myLineChart = new Chart(ctxL, {
-        type: 'line',
-        data: {
-            labels: dayLabels,
-            datasets: [
-                {label: "Температура ",
-                data: dayTemp,
-                backgroundColor: ['rgba(105, 0, 132, .2)',],
-                borderColor: ['rgba(200, 99, 132, .7)',],
-                borderWidth: 2},
-                {label: "Влажность",
-                data: dayHumidity,
-                backgroundColor: ['rgba(0, 137, 132, .2)',],
-                borderColor: ['rgba(0, 10, 130, .7)',],
-                borderWidth: 2}
-            ]
-        },
-        options: {
-            responsive: true
-        }
-    });
+  const graph = new Graph();
+  graph.generation(dayData);
+  graph.render();
 }
 
 function renderWatherTable(dayData) {
